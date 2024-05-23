@@ -1,0 +1,32 @@
+Grundlegende Funktion:
+
+Messdaten sollen aus drei Sensoren gleicher Art ausgelesen,
+verarbeitet und graphisch dargestellt werden. Die Sensorwerte 
+werden in unserem Projekt durch jeweils eine Textdatei für 
+jeden Sensor dargestellt. Es soll der Mittelwert der drei
+Werte berechnet werden und in eine Log-Datei eingetragen
+werden. Sollte einer oder mehrere der Sensoren ausfallen,
+soll die Fehlermeldung in eine separate Log-Datei geschrieben 
+und nur mit den verbleibenden Sensorwerten gerechnet werden.
+
+Programmierung:
+
+Die Programmierung erfolgt objektorientert in Python, daher 
+müssen Klassen und die verwendeten Methoden entweder angegeben 
+oder selbst definiert werden. Außerdem wird ein "git-repository"
+erstellt um die Zusammenarbeit zwischen uns Teampartnern zu 
+vereinfachen und die Übersicht zu behalten.
+
+Ziel des Projekts:
+
+Das Ziel aus unserer Sicht ist es, die in den letzten Jahren 
+erlernten Programmier- und Projektmanagementfähigkeiten 
+anzuwenden und erweitern. 
+
+
+
+Mögliche Erweiterung:
+
+Falls die Zeit dafür ausreicht, wäre es möglich die Werte
+und Fehlermeldungen in eine SQL-DB zu schreiben und sie 
+in dieser zu speichern.

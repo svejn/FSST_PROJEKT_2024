@@ -16,6 +16,12 @@ müssen Klassen und die verwendeten Methoden entweder angegeben
 oder selbst definiert werden. Außerdem wird ein "git-repository"
 erstellt um die Zusammenarbeit zwischen uns Teampartnern zu 
 vereinfachen und die Übersicht zu behalten.
+Zu den verwendeten Klassen gehören:
+    -Tkinter (oder Matplotlib)
+    -Sensor (selbst definiert)
+    -Multiprocessing (evtl.)
+    -Time 
+    -Ergänzungen können folgen
 
 Ziel des Projekts:
 

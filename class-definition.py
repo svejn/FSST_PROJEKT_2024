@@ -1,11 +1,15 @@
 # Hier sind die benoetigten Klassen definiert
+import datetime as dt
+import time as t 
 
 class Sensor:
     
     def __init__(self):
         self.data = []
-    
+        self.sensor_am = []
+
     def read(self, sensor1, sensor2, sensor3):
+        global sensor_num
         for sensor_num in range(1, 4):
             filename = f"sensor{sensor_num}_values.txt"
             try:
@@ -34,10 +38,16 @@ class Sensor:
         print(sum_data)
         amw_sensor_data = sum_data / len_data
         print(f"Arithmetic Mean: {amw_sensor_data}")
-        return amw_sensor_data
+        self.sensor_am.append(amw_sensor_data)
+        print("this is in sensor_am:", self.sensor_am)
 
-    def log_data(self, data1, data2, data3):
-        pass
+    def log_data(self):
+        log_time = dt.datetime.now().strftime("%Y-%m-%d|%H:%M:%S")
+        sensor_log_data = map(str, self.sensor_am)
+        data_to_write = str(list(sensor_log_data))
+        with open("data_log.txt", "a") as sensor_log_file:
+            sensor_log_file.write(f"Date|Time: {log_time}  |||  {sensor_num} Sensors acitve  |||   AM:{data_to_write}"+ "\n")
+            
 
     def log_err(self, sensor1, sensor2, sensor3):
         pass
@@ -46,3 +56,6 @@ class Sensor:
 s = Sensor()
 s.read("sensor1_values.txt", "sensor2_values.txt", "sensor3_values.txt")
 s.calc()
+for i in range(1,10,1):
+    s.log_data()
+    t.sleep(5)

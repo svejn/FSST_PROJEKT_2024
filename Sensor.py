@@ -1,13 +1,30 @@
 import datetime as dt
 import time as t 
 import random as r
-#es geht
+import matplotlib.pyplot as plt
+import matplotlib.axes as  axis
+import matplotlib.animation as animation
+from collections import deque
+
 
 class sensor:
     
     def __init__(self):
         self.data = []
         self.sensor_am = []
+
+        deque_length=10
+        y_range=(0,10)
+
+        self.plotdata=deque([0]*deque_length,deque_length)
+        self.ax: axis.Axes
+        self.fig, self.ax = plt.subplots()
+        self.line, = self.ax.plot(self.plotdata)
+        
+        #self.ax.set_ylim(y_range)
+        self.ax.set_xlim(0, deque_length - 1)
+        self.deque_length=deque_length
+
 
     def write(self, sensor_files): # only serves a demonstrational purpous, as there are no real sensor values
         for filename in sensor_files:
@@ -51,7 +68,30 @@ class sensor:
         amw_sensor_data = sum_data / len_data if len_data > 0 else 0
         #print(f"Arithmetic Mean: {amw_sensor_data}")
         self.sensor_am.append(amw_sensor_data)
+
         #print("this is in sensor_am:", self.sensor_am)
+
+        return amw_sensor_data
+
+
+    
+    def update_plot(self,new_value: int):
+        self.plotdata.append(new_value)
+        print(self.plotdata)
+        
+        # Update the line data
+        self.line.set_ydata(self.plotdata)
+        
+        # Update the x-axis ticks and labels
+        self.ax.set_xticks(range(len(self.plotdata)))
+        self.ax.set_xticklabels([f't-{i}' if i != 0 else 't' for i in range(self.deque_length - 1, -1, -1)])
+
+        self.ax.relim()
+        self.ax.autoscale_view(scaley=True, scalex=False)
+
+    def run_plot(self, run_func, interval):
+        self.ani = animation.FuncAnimation(self.fig, run_func, interval=interval)
+        plt.show()
 
     def log_data(self):
         if self.sensor_am:

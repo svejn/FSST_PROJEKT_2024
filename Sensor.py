@@ -1,6 +1,7 @@
 import datetime as dt
 import time as t 
 import random as r
+#es geht
 
 class sensor:
     
